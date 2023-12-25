@@ -5,7 +5,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../helpers/api_helper.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -19,9 +18,6 @@ class _LoginScreenState extends State<LoginScreen> {
   //Declaration
   final _formKey = GlobalKey<FormState>();
   final data = {};
-  bool _isInit = true;
-
-  final client = Dio();
 
   @override
   Widget build(BuildContext context) {
@@ -274,11 +270,7 @@ class _LoginScreenState extends State<LoginScreen> {
         logindata:
             LoginModel(email: data['email'], password: data['password']));
     if (isContain!) {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => const NavigationScreen(),
-          ));
+      Navigator.pushNamed(context, "navigation");
       Fluttertoast.showToast(msg: "Welcome!");
     } else {
       Fluttertoast.showToast(msg: "Invalid credential");

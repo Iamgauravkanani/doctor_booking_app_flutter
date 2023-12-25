@@ -167,11 +167,6 @@ class _OnboardingScreen extends State<OnboardingScreen> {
 
   // Custom Actions
   void onContinue() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => const LoginScreen(),
-      ),
-    );
+    Navigator.pushNamed(context, "login");
   }
 }
