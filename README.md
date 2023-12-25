@@ -1,16 +1,8 @@
-# demo_task
+<img src="https://github.com/Iamgauravkanani/doctor_booking_app_flutter/assets/128220245/ace344b4-624d-439e-8a1e-20fee7b7814f" width=280px>
+<img src="https://github.com/Iamgauravkanani/doctor_booking_app_flutter/assets/128220245/4ba971b4-4824-4d2c-bd32-544050f3b25b" width=280px>
+<img src="https://github.com/Iamgauravkanani/doctor_booking_app_flutter/assets/128220245/dd988bed-6751-4aec-a8bd-2d72e03cd25b" width=280px>
+<img src="https://github.com/Iamgauravkanani/doctor_booking_app_flutter/assets/128220245/6c772267-bb76-494a-8036-b5ef283b37b5" width=280px>
+<img src="https://github.com/Iamgauravkanani/doctor_booking_app_flutter/assets/128220245/9391dd31-85d2-4b72-9f82-df9a2f4e8c53" width=280px>
 
-A new Flutter project.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
