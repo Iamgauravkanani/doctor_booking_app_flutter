@@ -1,10 +1,12 @@
 import 'package:demo_task/model/users_model.dart';
-import 'package:demo_task/screen/navigation/navifation_screen.dart';
+import 'package:demo_task/screen/navigation/navigation_screen.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../helpers/api_helper.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -18,18 +20,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final data = {};
   bool _isInit = true;
-  List<UserData> users = [];
 
   final client = Dio();
-
-  @override
-  void didChangeDependencies() async {
-    if (_isInit) {
-      _isInit = false;
-      await getUsers();
-    }
-    super.didChangeDependencies();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -246,40 +238,42 @@ class _LoginScreenState extends State<LoginScreen> {
             color: const Color(0xff1F5460).withOpacity(.40), width: 2),
       );
 
-
   //Custom Actions
 
   // Get users
-  Future<void> getUsers() async {
-    const url = "http://myhealth.hiteck-consulting.com/api/login.php";
-    try {
-      final response = await client.get(url);
+  // Future<void> getUsers() async {
+  //   const url = "http://myhealth.hiteck-consulting.com/api/login.php";
+  //   try {
+  //     final response = await client.get(url);
+  //
+  //     if (response.statusCode == 200 && response.data['error'] == "false") {
+  //       users = Users.fromJson(response.data).users ?? [];
+  //     } else {
+  //       print('${response.statusCode} : ${response.data['message']}');
+  //     }
+  //   } catch (error) {
+  //     print(error);
+  //     Fluttertoast.showToast(msg: "Something went wrong");
+  //   }
+  // }
 
-      if (response.statusCode == 200 && response.data['error'] == "false") {
-        users = Users.fromJson(response.data).users ?? [];
-      } else {
-        print('${response.statusCode} : ${response.data['message']}');
-      }
-    } catch (error) {
-      print(error);
-      Fluttertoast.showToast(msg: "Something went wrong");
-    }
-  }
-
-  void onLogin() {
+  void onLogin() async {
     //Form validation
     if (!(_formKey.currentState?.validate() ?? false)) {
       return;
     }
     _formKey.currentState?.save();
     // Verify if user exist
-    bool isContain = users
-        .where((element) =>
-            element.email == data['email'] &&
-            element.password == data['password'])
-        .toList()
-        .isNotEmpty;
-    if (isContain) {
+    // bool isContain = users
+    //     .where((element) =>
+    //         element.email == data['email'] &&
+    //         element.password == data['password'])
+    //     .toList()
+    //     .isNotEmpty;
+    bool? isContain = await LoginApiHelper.loginApiHelper.login(
+        logindata:
+            LoginModel(email: data['email'], password: data['password']));
+    if (isContain!) {
       Navigator.push(
           context,
           MaterialPageRoute(
@@ -291,7 +285,7 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  void onClickOr(){}
-  void onClickSignUp(){}
-  void onClickForgotPass(){}
+  void onClickOr() {}
+  void onClickSignUp() {}
+  void onClickForgotPass() {}
 }
